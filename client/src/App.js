@@ -17,9 +17,7 @@ export default class App extends Component {
 
   addToSavedList = movie => {
     const savedList = this.state.savedList;
-    if (savedList.includes(movie)) {
-      return;
-    }
+    if (savedList.includes(movie)) return;
     savedList.push(movie);
     this.setState({ savedList });
   };
@@ -30,21 +28,22 @@ export default class App extends Component {
     });
   };
 
-  postMovie = ev => {
-    ev.preventDefault();
-    const title = this.state.addMovieInput;
-    this.setState({
-      addMovieInput: ""
-    })
-    axios
-      .post(`http://www.omdbapi.com/?t=${title}&apikey=313fb848`)
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+  // postMovie = ev => {
+  //   ev.preventDefault();
+  //   const title = this.state.addMovieInput;
+  //   this.setState({
+  //     addMovieInput: ""
+  //   })
+  //   axios
+  //     .post(
+  //       "http://localhost:5000/api/movies/", {})
+  //     .then(response => {
+  //       console.log(response.data)
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   render() {
     return (

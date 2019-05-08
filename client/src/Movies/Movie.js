@@ -11,6 +11,7 @@ export default class Movie extends Component {
   }
 
   componentDidMount() {
+    // change this line to grab the id passed on the URL
     const id = this.props.match.params.id;
     this.fetchMovie(id);
   }
@@ -25,6 +26,12 @@ export default class Movie extends Component {
         console.error(error);
       });
   };
+
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.match.params.id !== prevProps.match.params.id){
+      this.fetchMovie(this.props.match.params.id);
+    }
+  }
 
   saveMovie = () => {
     this.props.addToSavedList(this.state.movie)
